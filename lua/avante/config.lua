@@ -303,6 +303,20 @@ M._defaults = {
   ---See https://github.com/yetone/avante.nvim/wiki#custom-providers for more details
   ---@type {[string]: AvanteProvider}
   vendors = {
+    ---GitHub Copilot supports claude-3.5 and claude-3.7 models
+    ---The claude models also better support tool use
+    ["claude35"] = {
+      __inherited_from = "copilot",
+      model = "claude-3.5-sonnet",
+    },
+    ["claude37"] = {
+      __inherited_from = "copilot",
+      model = "claude-3.7-sonnet",
+    },
+    ["claude37-thought"] = {
+      __inherited_from = "copilot",
+      model = "claude-3.7-sonnet-thought",
+    },
     ---@type AvanteSupportedProvider
     ["claude-haiku"] = {
       __inherited_from = "claude",
