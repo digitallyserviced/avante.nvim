@@ -30,6 +30,14 @@ struct SelectedFile {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+struct ToolGuidelines {
+    name: String,
+    description: String,
+    guidelines: String,
+    example: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 struct TemplateContext {
     ask: bool,
     code_lang: String,
@@ -42,6 +50,7 @@ struct TemplateContext {
     system_info: Option<String>,
     model_name: Option<String>,
     memory: Option<String>,
+    tools: Option<Vec<ToolGuidelines>>,
 }
 
 // Given the file name registered after add, the context table in Lua, resulted in a formatted
@@ -69,6 +78,7 @@ fn render(state: &State, template: &str, context: TemplateContext) -> LuaResult<
                   system_info => context.system_info,
                   model_name => context.model_name,
                   memory => context.memory,
+                  tools => context.tools,
                 })
                 .map_err(LuaError::external)
                 .unwrap())

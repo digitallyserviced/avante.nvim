@@ -8,6 +8,13 @@ local HistoryMessage = require("avante.history_message")
 local M = setmetatable({}, Base)
 
 M.name = "dispatch_agent"
+M.guidelines = [[
+  - Use dispatch_agent for complex search operations that may need multiple tool calls.
+  - Provide detailed instructions in the prompt to ensure the agent can work autonomously.
+  - Consider launching multiple agents concurrently for better performance.
+  - Remember that agent results aren't visible to the user; summarize findings yourself.
+  - Agents cannot modify files; use direct tools for file modifications.
+]]
 
 M.get_description = function()
   local provider = Providers[Config.provider]
@@ -192,3 +199,4 @@ When you're done, provide a clear and concise summary of what you found.]]):gsub
 end
 
 return M
+

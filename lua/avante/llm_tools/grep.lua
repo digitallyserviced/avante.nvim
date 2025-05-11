@@ -9,6 +9,13 @@ local M = setmetatable({}, Base)
 M.name = "grep"
 
 M.description = "Search for a keyword in a directory using grep in current project scope"
+M.guidelines = [[
+  - Use grep for searching text content within files
+  - Be specific with search terms to avoid irrelevant matches
+  - Consider using case_sensitive option when matches must be exact
+  - Use include_pattern/exclude_pattern to narrow down search scope
+  - For complex searches across multiple files, consider using dispatch_agent instead
+]]
 
 ---@type AvanteLLMToolParam
 M.param = {
@@ -115,3 +122,4 @@ function M.func(opts, on_log)
 end
 
 return M
+

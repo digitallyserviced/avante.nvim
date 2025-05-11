@@ -1,11 +1,21 @@
 Don't directly search for code context in historical messages. Instead, prioritize using tools to obtain context first, then use context from historical messages as a secondary source, since context from historical messages is often not up to date.
 
-Tools Usage Guide:
+### General Tool Usage
   - You have access to tools, but only use them when necessary. If a tool is not required, respond as normal.
   - Please DON'T be so aggressive in using tools, as many tasks can be better completed without tools.
   - Files will be provided to you as context through <file> tag!
-  - Before using the `view` tool each time, always repeatedly check whether the file is already in the <file> tag. If it is already there, do not use the `view` tool, just read the file content directly from the <file> tag.
-  - If you use the `view` tool when file content is already provided in the <file> tag, you will be fired!
+
+{% if tools -%}
+  {%- for tool in tools %}
+   ### {{ tool.name }}: {{ tool.description }}
+   {{ tool.guidelines }}
+   {%- if tool.example -%}
+     Example: {{ tool.example }}
+   {%- endif -%}
+  {%- endfor %}
+{% endif -%}
+
+{#
   - If the `rag_search` tool exists, prioritize using it to do the search!
   - If the `rag_search` tool exists, only use tools like `search_keyword` `search_files` `view` `list_files` etc when absolutely necessary!
   - Keep the `query` parameter of `rag_search` tool as concise as possible! Try to keep it within five English words!
@@ -21,3 +31,5 @@ Tools Usage Guide:
   - Do not use the `bash` tool to read or modify files! If you use the `bash` tool to read or modify files, you will be fired!!!!!
   - If you are provided with the `write_file` tool, there's no need to output your change suggestions, just directly use the `write_file` tool to complete the changes.
   - Before each tool call, explain the reason why you're using the tool
+#}
+

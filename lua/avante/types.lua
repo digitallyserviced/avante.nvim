@@ -385,6 +385,7 @@ vim.g.avante_login = vim.g.avante_login
 ---@field func? AvanteLLMToolFunc
 ---@field param AvanteLLMToolParam
 ---@field returns AvanteLLMToolReturn[]
+---@field guidelines? string
 ---@field enabled? fun(opts: { user_input: string, history_messages: AvanteLLMMessage[] }): boolean
 
 ---@class AvanteLLMToolPublic : AvanteLLMTool

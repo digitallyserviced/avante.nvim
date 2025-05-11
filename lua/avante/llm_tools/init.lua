@@ -605,6 +605,12 @@ M._tools = {
     name = "rag_search",
     enabled = function() return Config.rag_service.enabled and RagService.is_ready() end,
     description = "Use Retrieval-Augmented Generation (RAG) to search for relevant information from an external knowledge base or documents. This tool retrieves relevant context from a large dataset and integrates it into the response generation process, improving accuracy and relevance. Use it when answering questions that require factual knowledge beyond what the model has been trained on.",
+    guidelines = [[
+  - Prioritize using the `rag_search` tool for information retrieval before using other search tools.
+  - Keep search queries concise, preferably five words or fewer.
+  - Use specific keywords rather than full sentences for better retrieval results.
+  - Formulate clear, targeted queries focusing on the key information needed.
+]],
     param = {
       type = "table",
       fields = {
@@ -632,6 +638,13 @@ M._tools = {
   {
     name = "run_python",
     description = "Run python code in current project scope. Can't use it to read files or modify files.",
+    guidelines = [[
+  - Never use Python to read or modify files - use dedicated file tools instead.
+  - Use Python primarily for computational tasks, data processing, or mathematical calculations.
+  - Format output for human readability rather than using mathematical symbols.
+  - Keep code concise and focused on specific tasks.
+  - Always handle potential exceptions in your Python code.
+]],
     param = {
       type = "table",
       fields = {
@@ -994,6 +1007,12 @@ M._tools = {
   {
     name = "web_search",
     description = "Search the web",
+    guidelines = [[
+  - Use the `web_search` tool for information that cannot be found in the local codebase.
+  - Create focused, specific search queries to get the most relevant results.
+  - After receiving search results, use the `fetch` tool to get detailed information from links.
+  - Do not use subsequent `web_search` calls for the same topic; use `fetch` instead.
+]],
     param = {
       type = "table",
       fields = {
@@ -1021,6 +1040,12 @@ M._tools = {
   {
     name = "fetch",
     description = "Fetch markdown from a url",
+    guidelines = [[
+  - Use `fetch` to retrieve content from URLs returned by `web_search` or encountered in code/documentation.
+  - Prioritize using `fetch` over `web_search` for URLs already identified.
+  - Extract key information from fetched content rather than displaying the entire response.
+  - Use specific URLs rather than search engine queries for more reliable information retrieval.
+]],
     param = {
       type = "table",
       fields = {
@@ -1219,3 +1244,7 @@ function M.stringify_tool_use(tool_use)
 end
 
 return M
+
+
+
+

@@ -312,6 +312,13 @@ function M.generate_prompts(opts)
       local filetype = Utils.get_filetype(filepath)
       if error ~= nil then
         Utils.error("error reading file: " .. error)
+        -- remove the file from the list
+        for i, file in ipairs(selected_files) do
+          if file.path == filepath then
+            table.remove(selected_files, i)
+            break
+          end
+        end
       else
         local content = table.concat(lines, "\n")
         table.insert(selected_files, { path = filepath, content = content, file_type = filetype })
@@ -320,6 +327,24 @@ function M.generate_prompts(opts)
   end
 
   selected_files = vim.iter(selected_files):filter(function(file) return viewed_files[file.path] == nil end):totable()
+  local tools = {}
+  if opts.tools then tools = vim.list_extend(tools, opts.tools) end
+  if opts.prompt_opts and opts.prompt_opts.tools then tools = vim.list_extend(tools, opts.prompt_opts.tools) end
+  local guidelines = vim
+    .iter(tools)
+    :filter(function(tool) return tool.guidelines ~= nil and tool.guidelines ~= "" end)
+    :map(function(tool)
+      if tool.guidelines then
+        return {
+          name = tool.name,
+          description = tool.description and tool.description ~= "" and tool.description or "",
+          guidelines = tool.guidelines,
+          example = tool.example and tool.example ~= "" and tool.example or "",
+        }
+      end
+    end)
+    :totable()
+  -- vim.print(vim.inspect(guidelines))
 
   local template_opts = {
     ask = opts.ask, -- TODO: add mode without ask instruction
@@ -332,8 +357,9 @@ function M.generate_prompts(opts)
     system_info = system_info,
     model_name = provider.model or "unknown",
     memory = opts.memory,
+    tools = guidelines,
   }
-
+  -- vim.print(vim.inspect(template_opts.tools))
   local system_prompt
   if opts.prompt_opts and opts.prompt_opts.system_prompt then
     system_prompt = opts.prompt_opts.system_prompt
@@ -471,10 +497,6 @@ function M.generate_prompts(opts)
   opts.session_ctx = opts.session_ctx or {}
   opts.session_ctx.system_prompt = system_prompt
   opts.session_ctx.messages = messages
-
-  local tools = {}
-  if opts.tools then tools = vim.list_extend(tools, opts.tools) end
-  if opts.prompt_opts and opts.prompt_opts.tools then tools = vim.list_extend(tools, opts.prompt_opts.tools) end
 
   ---@type AvantePromptOptions
   return {

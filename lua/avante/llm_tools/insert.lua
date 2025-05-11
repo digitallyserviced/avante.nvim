@@ -7,6 +7,12 @@ local Highlights = require("avante.highlights")
 local M = setmetatable({}, Base)
 
 M.name = "insert"
+M.guidelines = [[
+  - Use insert carefully to add new content at a specific line number.
+  - Specify insert_line as 0 to add content at the beginning of a file.
+  - For targeted changes to existing code, consider using replace_in_file instead.
+  - Confirm the insertion point is appropriate before submitting changes.
+]]
 
 M.description = "The insert tool allows you to insert text at a specific location in a file."
 
@@ -91,3 +97,4 @@ function M.func(opts, on_log, on_complete, session_ctx)
 end
 
 return M
+

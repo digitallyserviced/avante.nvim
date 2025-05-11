@@ -5,6 +5,11 @@ local Helpers = require("avante.llm_tools.helpers")
 
 ---@class AvanteLLMTool
 local M = setmetatable({}, Base)
+M.guidelines = [[
+  - Use the `create` tool to create new files only when necessary.
+  - Ensure the file path does not already exist in the project to avoid overwriting.
+  - Always confirm with the user before finalizing the creation of a file.
+]]
 
 M.name = "create"
 

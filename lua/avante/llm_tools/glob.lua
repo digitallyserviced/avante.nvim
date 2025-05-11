@@ -7,6 +7,10 @@ local M = setmetatable({}, Base)
 M.name = "glob"
 
 M.description = 'Fast file pattern matching using glob patterns like "**/*.js", in current project scope'
+M.guidelines = [[
+  - Use this tool to find files matching a specific pattern.
+  - Ensure the pattern is precise to avoid unnecessary matches.
+]]
 
 ---@type AvanteLLMToolParam
 M.param = {
@@ -51,3 +55,4 @@ function M.func(opts, on_log)
 end
 
 return M
+

@@ -8,6 +8,13 @@ local M = setmetatable({}, Base)
 M.name = "ls"
 
 M.description = "List files and directories in a given path in current project scope"
+M.guidelines = [[
+  - Use this tool to explore directory structures before making changes.
+  - Always set an appropriate max_depth to avoid overwhelming results.
+  - Use rel_path parameter to specify subdirectories when needed.
+  - Results are returned as a list of file paths.
+  - Useful for understanding project structure before using other tools.
+]]
 
 ---@type AvanteLLMToolParam
 M.param = {
@@ -61,3 +68,5 @@ function M.func(opts, on_log)
 end
 
 return M
+
+

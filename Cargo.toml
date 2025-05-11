@@ -13,6 +13,7 @@ avante-tokenizers = { path = "crates/avante-tokenizers" }
 avante-templates = { path = "crates/avante-templates" }
 avante-repo-map = { path = "crates/avante-repo-map" }
 avante-html2md = { path = "crates/avante-html2md" }
+avante-curl = { path = "crates/avante-curl" }
 minijinja = { version = "2.4.0", features = [
   "loader",
   "json",

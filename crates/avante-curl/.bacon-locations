@@ -1,0 +1,42 @@
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:212:56 expected `;`, found `Ok`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:195:13 cannot find value `REQUEST_MANAGER` in this scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:195:39 cannot find value `request_id` in this scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:200:9 cannot find value `REQUEST_MANAGER` in this scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:200:38 cannot find value `request_id` in this scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:200:78 failed to resolve: use of undeclared type `HashMap`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:146:5 duplicate definitions with name `new`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:157:5 duplicate definitions with name `init_request`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:199:5 duplicate definitions with name `poll_request`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:221:5 duplicate definitions with name `set_response`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:231:5 duplicate definitions with name `set_completed`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:252:5 duplicate definitions with name `set_error`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:77:46 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:146:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:281:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:88:30 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:157:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:312:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:92:36 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:199:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:488:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:109:30 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:221:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:413:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:113:30 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:231:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:424:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:117:30 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:252:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:447:5 multiple applicable items in scope
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:229:5 `?` operator has incompatible types
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:245:5 `?` operator has incompatible types
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:261:5 `?` operator has incompatible types
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:277:5 `?` operator has incompatible types
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:293:5 `?` operator has incompatible types
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:300:58 `Session` doesn't implement `std::fmt::Debug`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/session.rs:70:1 `Session` doesn't implement `std::fmt::Debug`
+error /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:352:42 no field `completed` on type `RequestInfo`
+warning /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:8:14 unused imports: `HeaderMap` and `RequestBuilder`
+warning /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:12:5 unused import: `path::Path`
+warning /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/lib.rs:18:15 unused import: `RequestManager`
+warning /home/chris/.local/share/nvim/lazy/avante.nvim/crates/avante-curl/src/http.rs:210:9 unused variable: `cancel_flag`

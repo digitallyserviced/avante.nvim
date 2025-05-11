@@ -12,6 +12,11 @@ local KEYBINDING_NAMESPACE = vim.api.nvim_create_namespace("avante-diff-keybindi
 local M = setmetatable({}, Base)
 
 M.name = "replace_in_file"
+M.guidelines = [[
+  - Use the `replace_in_file` tool for precise modifications.
+  - Ensure the SEARCH content matches the file section exactly.
+  - Always test changes after applying replacements to verify correctness.
+]]
 
 M.description =
   "Request to replace sections of content in an existing file using SEARCH/REPLACE blocks that define exact changes to specific parts of the file. This tool should be used when you need to make targeted changes to specific parts of a file."

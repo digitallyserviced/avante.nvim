@@ -9,6 +9,14 @@ local Providers = require("avante.providers")
 local M = setmetatable({}, Base)
 
 M.name = "bash"
+M.guidelines = [[
+  - Never use bash commands to read or modify files; use the dedicated tools instead.
+  - Always verify directory existence before performing operations.
+  - Be cautious with commands that could affect the system state.
+  - Remember that shell state persists between commands.
+  - Prefer absolute paths over using cd commands.
+  - Avoid banned commands like curl, wget, or web browsers.
+]]
 
 local banned_commands = {
   "alias",
@@ -247,3 +255,4 @@ function M.func(opts, on_log, on_complete, session_ctx)
 end
 
 return M
+

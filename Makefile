@@ -14,7 +14,7 @@ endif
 LUA_VERSIONS := luajit lua51
 
 BUILD_DIR := build
-BUILD_FROM_SOURCE ?= false
+BUILD_FROM_SOURCE ?= true
 TARGET_LIBRARY ?= all
 
 RAG_SERVICE_VERSION ?= 0.0.10
@@ -25,7 +25,7 @@ all: luajit
 define make_definitions
 ifeq ($(BUILD_FROM_SOURCE),true)
 ifeq ($(TARGET_LIBRARY), all)
-$1: $(BUILD_DIR)/libAvanteTokenizers-$1.$(EXT) $(BUILD_DIR)/libAvanteTemplates-$1.$(EXT) $(BUILD_DIR)/libAvanteRepoMap-$1.$(EXT) $(BUILD_DIR)/libAvanteHtml2md-$1.$(EXT)
+$1: $(BUILD_DIR)/libAvanteTokenizers-$1.$(EXT) $(BUILD_DIR)/libAvanteTemplates-$1.$(EXT) $(BUILD_DIR)/libAvanteRepoMap-$1.$(EXT) $(BUILD_DIR)/libAvanteHtml2md-$1.$(EXT) $(BUILD_DIR)/libAvanteCurl-$1.$(EXT)
 else ifeq ($(TARGET_LIBRARY), tokenizers)
 $1: $(BUILD_DIR)/libAvanteTokenizers-$1.$(EXT)
 else ifeq ($(TARGET_LIBRARY), templates)
@@ -34,8 +34,10 @@ else ifeq ($(TARGET_LIBRARY), repo-map)
 $1: $(BUILD_DIR)/libAvanteRepoMap-$1.$(EXT)
 else ifeq ($(TARGET_LIBRARY), html2md)
 $1: $(BUILD_DIR)/libAvanteHtml2md-$1.$(EXT)
+else ifeq ($(TARGET_LIBRARY), curl)
+$1: $(BUILD_DIR)/libAvanteCurl-$1.$(EXT)
 else
-	$$(error TARGET_LIBRARY must be one of all, tokenizers, templates, repo-map, html2md)
+	$$(error TARGET_LIBRARY must be one of all, tokenizers, templates, repo-map, html2md, curl)
 endif
 else
 $1:
@@ -56,12 +58,14 @@ $(BUILD_DIR)/libAvanteTokenizers-$1.$(EXT): $(BUILD_DIR) $1-tokenizers
 $(BUILD_DIR)/libAvanteTemplates-$1.$(EXT): $(BUILD_DIR) $1-templates
 $(BUILD_DIR)/libAvanteRepoMap-$1.$(EXT): $(BUILD_DIR) $1-repo-map
 $(BUILD_DIR)/libAvanteHtml2md-$1.$(EXT): $(BUILD_DIR) $1-html2md
+$(BUILD_DIR)/libAvanteCurl-$1.$(EXT): $(BUILD_DIR) $1-curl
 endef
 
 $(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_package,$(lua_version),tokenizers)))
 $(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_package,$(lua_version),templates)))
 $(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_package,$(lua_version),repo-map)))
 $(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_package,$(lua_version),html2md)))
+$(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_package,$(lua_version),curl)))
 $(foreach lua_version,$(LUA_VERSIONS),$(eval $(call build_targets,$(lua_version))))
 
 $(BUILD_DIR):
@@ -95,7 +99,7 @@ rusttest:
 
 .PHONY: luatest
 luatest:
-	nvim --headless -c "PlenaryBustedDirectory tests/"
+	nvim --headless --clean -n -u test/minimal_init.lua # -c  # "lua require('plenary.busted').run('tests/curl_client_integration_test.lua')" -c "qa!"
 
 .PHONY: lint
 lint: luacheck luastylecheck ruststylecheck rustlint

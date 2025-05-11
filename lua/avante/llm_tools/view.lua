@@ -7,6 +7,10 @@ local Helpers = require("avante.llm_tools.helpers")
 local M = setmetatable({}, Base)
 
 M.name = "view"
+M.guidelines = [[
+  - Before using the `view` tool each time, always repeatedly check whether the file is already in the <file> tag. If it is already there, do not use the `view` tool, just read the file content directly from the <file> tag.
+  - If you use the `view` tool when file content is already provided in the <file> tag, you will be fired!
+]]
 
 M.description =
   "The view tool allows you to examine the contents of a file or list the contents of a directory. It can read the entire file or a specific range of lines. If the file content is already in the context, do not use this tool."
